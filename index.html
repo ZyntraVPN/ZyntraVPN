@@ -13,9 +13,9 @@
   <header class="nav glass-dock" role="banner" aria-label="Навигация">
     <div class="nav-inner container">
       <div class="nav-left">
-        <div id="logoSmall" class="logo-small" aria-hidden="true" title="ZyntraVPN">
-          <img id="logoSmallImg" src="logo.png" alt="ZyntraVPN" />
-        </div>
+        <a href="#hero" class="logo-small" id="logoSmall" aria-label="ZyntraVPN">
+          <img src="logo.png" alt="ZyntraVPN" />
+        </a>
         <div class="brand-title">ZyntraVPN</div>
       </div>
 
@@ -23,21 +23,39 @@
         <a href="#features">Особенности</a>
         <a href="#how">Как подключиться</a>
         <a href="#news">Новости</a>
-        <a id="tgBtnTop" class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">🔥 Подключиться через Telegram</a>
+        <a class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">🔥 Подключиться через Telegram</a>
       </nav>
 
-      <!-- BURGER MENU -->
-      <div class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+      <!-- BURGER -->
+      <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-controls="mobileSheet" aria-expanded="false">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
   </header>
 
-  <!-- FLOATING BIG LOGO -->
+  <!-- MOBILE SHEET MENU -->
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <aside class="sheet" id="mobileSheet" aria-hidden="true">
+    <div class="sheet-head">
+      <div class="sheet-brand">
+        <img src="logo.png" alt="ZyntraVPN" />
+        <strong>ZyntraVPN</strong>
+      </div>
+      <button class="sheet-close" id="sheetClose" aria-label="Закрыть меню">✕</button>
+    </div>
+    <nav class="sheet-links">
+      <a href="#features" class="sheet-link">Особенности</a>
+      <a href="#how" class="sheet-link">Как подключиться</a>
+      <a href="#news" class="sheet-link">Новости</a>
+      <a href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer" class="btn btn-neutral sheet-cta">🔥 Подключиться через Telegram</a>
+    </nav>
+  </aside>
+
+  <!-- BIG CENTER LOGO (DESKTOP/TABLET ONLY) -->
   <div class="big-wrap" aria-hidden="true">
-    <div id="orb" class="orb" aria-hidden="true"></div>
+    <div id="orb" class="orb"></div>
     <div id="bigLogo" class="big-logo" role="img" aria-label="ZyntraVPN">
-      <img id="bigLogoImg" src="logo.png" alt="ZyntraVPN" />
+      <img src="logo.png" alt="ZyntraVPN" />
     </div>
   </div>
 
@@ -48,15 +66,15 @@
       <div class="hero-inner">
         <div class="hero-card reveal" id="heroCard" role="region" aria-labelledby="heroTitle">
           <h1 id="heroTitle">ZyntraVPN</h1>
-          <div class="slogan" id="sloganText">Невидимость — это новая сила</div>
-          <p id="heroDesc" class="muted">Подключись за одну минуту — получай приватные VLESS/VLSS конфигурации для Android и iOS. Все ссылки и инструкции — в официальном Telegram-канале.</p>
+          <div class="slogan">Невидимость — это новая сила</div>
+          <p class="muted">Подключись за одну минуту — получай приватные VLESS/VLSS конфигурации для Android и iOS. Все ссылки и инструкции — в официальном Telegram-канале.</p>
 
           <div class="hero-actions">
-            <a id="tgPrimary" class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">🔥 Подключиться через Telegram</a>
-            <a id="learnBtn" class="btn btn-ghost" href="#how">💬 Узнать больше</a>
+            <a class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">🔥 Подключиться через Telegram</a>
+            <a class="btn btn-ghost" href="#how">💬 Узнать больше</a>
           </div>
 
-          <div class="clients" id="clientsList" aria-live="polite">
+          <div class="clients" aria-live="polite">
             <strong>Рекомендуемые клиенты:</strong> v2RayTun • v2rayNG • V2Box
           </div>
         </div>
@@ -68,19 +86,10 @@
     <!-- FEATURES -->
     <section id="features" class="container reveal" aria-labelledby="featuresHeading">
       <h2 id="featuresHeading">Почему ZyntraVPN</h2>
-      <div class="grid features-grid" aria-hidden="false">
-        <article class="card" aria-labelledby="f1">
-          <h3 id="f1">🕶️ Анонимность без компромиссов</h3>
-          <p class="muted">Минимум данных, никакого трекинга — мы выдаём только временные конфигурации.</p>
-        </article>
-        <article class="card" aria-labelledby="f2">
-          <h3 id="f2">🚀 Скорость без ограничений</h3>
-          <p class="muted">Оптимизированные узлы для быстрой работы стримов, игр и работы.</p>
-        </article>
-        <article class="card" aria-labelledby="f3">
-          <h3 id="f3">📱 Простота на Android и iOS</h3>
-          <p class="muted">Используй v2Ray-клиенты: v2RayTun, v2rayNG, V2Box. Инструкции — в Telegram.</p>
-        </article>
+      <div class="grid features-grid">
+        <article class="card"><h3>🕶️ Анонимность без компромиссов</h3><p class="muted">Минимум данных, никакого трекинга — выдаём только временные конфигурации.</p></article>
+        <article class="card"><h3>🚀 Скорость без ограничений</h3><p class="muted">Оптимизированные узлы для стримов, игр и работы.</p></article>
+        <article class="card"><h3>📱 Простота на Android и iOS</h3><p class="muted">Используй v2Ray-клиенты: v2RayTun, v2rayNG, V2Box. Инструкции — в Telegram.</p></article>
       </div>
     </section>
 
@@ -89,8 +98,8 @@
       <h2 id="howHeading">Как подключиться</h2>
       <ol class="how-list">
         <li><strong>Скачай приложение</strong> — Android & iOS: v2RayTun / v2rayNG / V2Box.</li>
-        <li><strong>Получай ссылку</strong> — в нашем Telegram-канале вы получите временные ссылки.</li>
-        <li><strong>Вставь и подключись</strong> — вставь ссылку в клиент и включи соединение.</li>
+        <li><strong>Получай ссылку</strong> — в нашем Telegram-канале придут временные ссылки.</li>
+        <li><strong>Вставь и подключись</strong> — импортируй ссылку и включи соединение.</li>
         <li><strong>Если магазин недоступен</strong> — в Telegram есть прямые ссылки на APK/IPA.</li>
       </ol>
     </section>
@@ -105,14 +114,8 @@
     <!-- FAQ -->
     <section id="faq" class="container reveal" aria-labelledby="faqHeading">
       <h2 id="faqHeading">FAQ / Privacy</h2>
-      <details style="margin-top:10px">
-        <summary>Храните ли вы логи?</summary>
-        <p class="muted">Мы храним только технические данные (uuid, expiry). Логи трафика не сохраняются.</p>
-      </details>
-      <details style="margin-top:8px">
-        <summary>Как проходит оплата?</summary>
-        <p class="muted">Оплата через Telegram вручную (в будущем возможна интеграция платёжного шлюза).</p>
-      </details>
+      <details style="margin-top:10px"><summary>Храните ли вы логи?</summary><p class="muted">Храним только тех. данные для выдачи ссылки (uuid, expiry). Трафик не логируем.</p></details>
+      <details style="margin-top:8px"><summary>Как проходит оплата?</summary><p class="muted">Оплата через Telegram вручную (в будущем — платёжный шлюз).</p></details>
     </section>
   </main>
 
@@ -129,54 +132,77 @@
 
   <!-- SCRIPTS -->
   <script>
-    document.addEventListener('DOMContentLoaded', ()=> {
+    // Year + reveal
+    document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('yearEl').innerText = new Date().getFullYear();
       document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 140 + i*90));
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); });
-      }, {threshold:0.14});
+      const obs = new IntersectionObserver(entries => entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); }), {threshold:0.14});
       document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     });
 
-    // Logo animation
+    // Big logo animation — desktop only
     (function(){
+      const mq = window.matchMedia('(min-width: 820px)');
       const big = document.getElementById('bigLogo');
       const orb = document.getElementById('orb');
       const small = document.getElementById('logoSmall');
-      let hiddenBig = false;
-      function update(){
-        const sc = window.scrollY || document.documentElement.scrollTop;
-        const start = 5, end = 160;
-        const t = Math.max(0, Math.min(1, (sc - start) / (end - start)));
-        const scale = 1 - 0.58 * t;
-        const translateY = - (t * 36 + 6);
-        const navLeft = document.querySelector('.nav-left');
-        const navRect = navLeft ? navLeft.getBoundingClientRect() : {left: 24, width:48};
-        const center = window.innerWidth / 2;
-        const targetX = - (t * (center - (navRect.left + navRect.width/2 + 6)));
-        big.style.transform = `translate3d(${targetX}px, ${translateY}px, 0) scale(${scale})`;
-        big.style.opacity = `${1 - 0.16 * t}`;
-        orb.style.transform = `translate3d(${targetX/1.6}px, ${translateY/1.6}px, 0) scale(${0.95 - 0.16*t})`;
-        if(t >= 0.45){
-          small.classList.add('visible');
-          if(!hiddenBig){ big.style.visibility = 'hidden'; hiddenBig = true; }
-        } else {
-          small.classList.remove('visible');
-          if(hiddenBig){ big.style.visibility = 'visible'; hiddenBig = false; }
+      if(!big || !orb || !small) return;
+
+      function enable(){
+        function update(){
+          const sc = window.scrollY || document.documentElement.scrollTop;
+          const start = 5, end = 160;
+          const t = Math.max(0, Math.min(1, (sc - start) / (end - start)));
+          const scale = 1 - 0.58 * t;
+          const translateY = -(t * 36 + 6);
+          const navLeft = document.querySelector('.nav-left');
+          const navRect = navLeft ? navLeft.getBoundingClientRect() : {left: 24, width: 48};
+          const center = window.innerWidth / 2;
+          const targetX = -(t * (center - (navRect.left + navRect.width/2 + 6)));
+          big.style.transform = `translate3d(${targetX}px, ${translateY}px, 0) scale(${scale})`;
+          big.style.opacity = String(1 - 0.16 * t);
+          orb.style.transform = `translate3d(${targetX/1.6}px, ${translateY/1.6}px, 0) scale(${0.95 - 0.16*t})`;
+          small.classList.toggle('visible', t >= 0.45);
+          big.style.visibility = t >= 0.45 ? 'hidden' : 'visible';
+          big.style.pointerEvents = t >= 0.45 ? 'none' : 'auto';
         }
+        window.addEventListener('scroll', ()=> requestAnimationFrame(update), {passive:true});
+        window.addEventListener('resize', ()=> requestAnimationFrame(update));
+        requestAnimationFrame(update);
       }
-      window.addEventListener('scroll', ()=> requestAnimationFrame(update), {passive:true});
-      window.addEventListener('resize', ()=> requestAnimationFrame(update));
-      requestAnimationFrame(update);
+
+      // only when wide
+      if (mq.matches) enable();
+      mq.addEventListener?.('change', (e)=>{ if(e.matches) enable(); });
     })();
 
-    // Mobile nav toggle
-    const burger = document.getElementById('burgerBtn');
-    const navLinks = document.querySelector('.navlinks');
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-      burger.setAttribute('aria-expanded', navLinks.classList.contains('show'));
-    });
+    // Mobile sheet menu
+    (function(){
+      const burger = document.getElementById('burgerBtn');
+      const sheet = document.getElementById('mobileSheet');
+      const closeBtn = document.getElementById('sheetClose');
+      const backdrop = document.getElementById('sheetBackdrop');
+
+      function openSheet(){
+        sheet.classList.add('open');
+        backdrop.hidden = false;
+        document.body.classList.add('no-scroll');
+        burger.setAttribute('aria-expanded','true');
+        sheet.setAttribute('aria-hidden','false');
+      }
+      function closeSheet(){
+        sheet.classList.remove('open');
+        backdrop.hidden = true;
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded','false');
+        sheet.setAttribute('aria-hidden','true');
+      }
+
+      burger.addEventListener('click', openSheet);
+      closeBtn.addEventListener('click', closeSheet);
+      backdrop.addEventListener('click', closeSheet);
+      document.querySelectorAll('.sheet-link').forEach(a=> a.addEventListener('click', closeSheet));
+    })();
   </script>
 </body>
 </html>
