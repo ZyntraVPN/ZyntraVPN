@@ -123,4 +123,58 @@
 
     <!-- FAQ -->
     <section id="faq" class="container reveal" aria-labelledby="faqHeading">
-      <h2
+      <h2 id="faqHeading">FAQ / Privacy</h2>
+      <details style="margin-top:10px"><summary>Храните ли вы логи?</summary><p class="muted">Храним только тех. данные для выдачи ссылки (uuid, expiry). Трафик не логируем.</p></details>
+      <details style="margin-top:8px"><summary>Как проходит оплата?</summary><p class="muted">Оплата через Telegram вручную (в будущем — платёжный шлюз).</p></details>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>© <span id="yearEl"></span> ZyntraVPN — <em>Невидимость — это новая сила</em></div>
+      <div class="footer-links">
+        <a href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">Telegram</a>
+        <a href="#faq">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Year + reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('yearEl').innerText = new Date().getFullYear();
+      document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 120 + i*80));
+      const obs = new IntersectionObserver(ents => ents.forEach(en => en.isIntersecting && en.target.classList.add('show')), {threshold:0.12});
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    });
+
+    // Mobile sheet
+    (function(){
+      const burger = document.getElementById('burgerBtn');
+      const sheet = document.getElementById('mobileSheet');
+      const backdrop = document.getElementById('sheetBackdrop');
+      const closeBtn = document.getElementById('sheetClose');
+
+      function openSheet(){
+        sheet.classList.add('open');
+        backdrop.hidden = false;
+        document.body.classList.add('no-scroll');
+        burger.setAttribute('aria-expanded','true');
+      }
+      function closeSheet(){
+        sheet.classList.remove('open');
+        backdrop.hidden = true;
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded','false');
+      }
+
+      burger.addEventListener('click', openSheet);
+      closeBtn.addEventListener('click', closeSheet);
+      backdrop.addEventListener('click', closeSheet);
+      sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSheet));
+    })();
+  </script>
+</body>
+</html>
