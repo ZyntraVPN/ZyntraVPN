@@ -2,611 +2,48 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ZyntraVPN — Невидимость — это новая сила</title>
   <meta name="description" content="ZyntraVPN — приватные VLESS/VLSS конфигурации для Android и iOS. Официальный Telegram: t.me/ZyntraVPN" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-:root {
-  --bg1: #071224;
-  --bg2: #071427;
-  --glass-bg: rgba(18,26,36,0.62);
-  --glass-bg-2: rgba(14,18,28,0.46);
-  --glass-border: rgba(255,255,255,0.03);
-  --dock-border: rgba(255,255,255,0.035);
-  --text: #e9f5ff;
-  --muted: #98a9c2;
-  --accent: #2f80ed;
-  --radius: 20px;
-  --blur: 16px;
-  --card-shadow: 0 26px 60px rgba(3,8,18,0.65);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  background: radial-gradient(1200px 600px at 8% 10%, rgba(47,128,237,0.04), transparent 8%),
-              linear-gradient(180deg, var(--bg1), var(--bg2));
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.container {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* NAV */
-header.nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 10px;
-  z-index: 140;
-  display: flex;
-  justify-content: center;
-  padding: 0 12px;
-  pointer-events: none;
-}
-
-header.nav .nav-inner {
-  pointer-events: auto;
-  width: 100%;
-  max-width: 1120px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid var(--dock-border);
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
-  box-shadow: 0 10px 30px rgba(3,6,12,0.6);
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.brand-title {
-  font-weight: 800;
-  font-size: 14px;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.navlinks {
-  display: none;
-  align-items: center;
-  gap: 12px;
-}
-
-.navlinks a {
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  color: var(--text);
-  opacity: 0.9;
-  white-space: nowrap;
-}
-
-#tgBtnTop {
-  padding: 8px 14px !important;
-  border-radius: 999px !important;
-  font-size: 12px !important;
-}
-
-@media (min-width: 768px) {
-  .navlinks {
-    display: flex;
-  }
-  .brand-title {
-    font-size: 16px;
-  }
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.12s;
-  border: 1px solid transparent;
-  font-size: 14px;
-}
-
-.btn-neutral {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.03);
-}
-
-.btn-neutral:hover {
-  transform: translateY(-3px);
-}
-
-.btn-ghost {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.04);
-  color: var(--text);
-}
-
-/* LOGOS */
-.logo-small {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.28s, transform 0.28s;
-  flex-shrink: 0;
-}
-
-.logo-small.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.logo-small img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  display: block;
-}
-
-.big-wrap {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 100px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 110;
-  padding-top: 10px;
-}
-
-.orb {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-8%);
-  filter: blur(30px);
-  opacity: 0.85;
-  pointer-events: none;
-  background: radial-gradient(circle at 30% 32%, rgba(47,128,237,0.12), rgba(86,204,242,0.03) 28%, transparent 50%);
-}
-
-.big-logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-  border: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-  backdrop-filter: blur(var(--blur));
-  -webkit-backdrop-filter: blur(var(--blur));
-  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.35s;
-  z-index: 111;
-}
-
-.big-logo img {
-  width: 72%;
-  height: 72%;
-  object-fit: contain;
-  display: block;
-}
-
-@media (min-width: 768px) {
-  .big-logo {
-    width: 170px;
-    height: 170px;
-  }
-  .orb {
-    width: 480px;
-    height: 480px;
-  }
-}
-
-/* HERO */
-.hero {
-  padding: 240px 0 60px;
-  position: relative;
-  z-index: 20;
-}
-
-@media (min-width: 768px) {
-  .hero {
-    padding: 300px 0 120px;
-  }
-}
-
-.hero-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: stretch;
-}
-
-@media (min-width: 768px) {
-  .hero-inner {
-    flex-direction: row;
-    gap: 28px;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.hero-card {
-  flex: 1;
-  padding: 28px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--glass-bg), var(--glass-bg-2));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--card-shadow);
-  backdrop-filter: blur(var(--blur));
-  -webkit-backdrop-filter: blur(var(--blur));
-}
-
-@media (min-width: 768px) {
-  .hero-card {
-    padding: 38px;
-    border-radius: 22px;
-  }
-}
-
-.hero-card h1 {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  line-height: 1.2;
-}
-
-@media (min-width: 768px) {
-  .hero-card h1 {
-    font-size: 44px;
-  }
-}
-
-.slogan {
-  display: block;
-  color: var(--accent);
-  font-weight: 700;
-  margin: 10px 0;
-  font-size: 16px;
-}
-
-@media (min-width: 768px) {
-  .slogan {
-    font-size: 18px;
-  }
-}
-
-.hero-card p {
-  margin: 0 0 16px;
-  color: var(--muted);
-  line-height: 1.55;
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  .hero-card p {
-    font-size: 15px;
-    margin: 0 0 18px;
-  }
-}
-
-.hero-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-}
-
-@media (min-width: 768px) {
-  .hero-actions {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.hero-actions .btn {
-  text-align: center;
-  justify-content: center;
-}
-
-@media (min-width: 768px) {
-  .hero-actions .btn {
-    justify-content: flex-start;
-  }
-}
-
-.hero-visual {
-  display: none;
-  width: 360px;
-  height: 260px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(47,128,237,0.05), rgba(86,204,242,0.02));
-  filter: blur(18px);
-  transform: translateY(-6px);
-  flex-shrink: 0;
-}
-
-@media (min-width: 768px) {
-  .hero-visual {
-    display: block;
-  }
-}
-
-/* SECTIONS */
-section {
-  padding: 50px 0;
-}
-
-@media (min-width: 768px) {
-  section {
-    padding: 80px 0;
-  }
-}
-
-#features {
-  margin-top: 20px;
-}
-
-#how, #news {
-  margin-top: 20px;
-}
-
-@media (min-width: 768px) {
-  #features, #how, #news {
-    margin-top: 48px;
-  }
-}
-
-h2 {
-  font-size: 22px;
-  margin: 0 0 20px;
-  font-weight: 700;
-}
-
-@media (min-width: 768px) {
-  h2 {
-    font-size: 26px;
-    margin: 0 0 28px;
-  }
-}
-
-.grid {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-}
-
-.card {
-  padding: 16px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-  border: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
-}
-
-@media (min-width: 768px) {
-  .card {
-    padding: 18px;
-    border-radius: 14px;
-  }
-}
-
-.card h3 {
-  margin: 0 0 8px;
-  color: var(--text);
-  font-size: 16px;
-}
-
-.muted {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.clients {
-  margin-top: 16px;
-  padding: 12px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-  border: 1px solid rgba(255,255,255,0.03);
-  display: inline-block;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.how-list {
-  padding-left: 20px;
-  color: var(--muted);
-}
-
-.how-list li {
-  margin-bottom: 12px;
-  line-height: 1.6;
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  .how-list li {
-    font-size: 15px;
-    margin-bottom: 14px;
-  }
-}
-
-details {
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.01);
-  border: 1px solid rgba(255,255,255,0.02);
-  cursor: pointer;
-}
-
-details summary {
-  font-weight: 600;
-  color: var(--text);
-  font-size: 14px;
-}
-
-details p {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-/* FOOTER */
-.footer {
-  padding: 24px 0;
-  border-top: 1px solid rgba(255,255,255,0.02);
-  margin-top: 40px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    gap: 28px;
-  }
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-@media (min-width: 768px) {
-  .footer-links {
-    justify-content: flex-start;
-  }
-}
-
-.footer a {
-  color: var(--muted);
-  text-decoration: underline;
-}
-
-/* ANIMATIONS */
-.reveal {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="nav" role="banner" aria-label="Навигация">
+  <!-- HEADER -->
+  <header class="nav glass-dock" role="banner" aria-label="Навигация">
     <div class="nav-inner container">
       <div class="nav-left">
-        <div class="logo-small" id="logoSmall" aria-hidden="true" title="ZyntraVPN">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="48" height="48" rx="8" fill="url(#grad)" />
-            <circle cx="24" cy="24" r="12" stroke="#2f80ed" stroke-width="2" fill="none" />
-            <defs>
-              <linearGradient id="grad" x1="0" y1="0" x2="48" y2="48">
-                <stop offset="0%" style="stop-color:#2f80ed;stop-opacity:0.8" />
-                <stop offset="100%" style="stop-color:#56ccf2;stop-opacity:0.4" />
-              </linearGradient>
-            </defs>
-          </svg>
+        <div id="logoSmall" class="logo-small" aria-hidden="true" title="ZyntraVPN">
+          <img id="logoSmallImg" src="logo.png" alt="ZyntraVPN" />
         </div>
         <div class="brand-title">ZyntraVPN</div>
       </div>
+
       <nav class="navlinks" role="navigation" aria-label="Главное меню">
         <a href="#features">Особенности</a>
         <a href="#how">Как подключиться</a>
         <a href="#news">Новости</a>
-        <a id="tgBtnTop" class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">🔥 Telegram</a>
+        <a id="tgBtnTop" class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">🔥 Подключиться через Telegram</a>
       </nav>
+
+      <!-- BURGER MENU -->
+      <div class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </header>
 
+  <!-- FLOATING BIG LOGO -->
   <div class="big-wrap" aria-hidden="true">
-    <div class="orb" id="orb"></div>
-    <div class="big-logo" id="bigLogo" role="img" aria-label="ZyntraVPN">
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="8" fill="url(#grad2)" />
-        <circle cx="24" cy="24" r="12" stroke="#2f80ed" stroke-width="2" fill="none" />
-        <defs>
-          <linearGradient id="grad2" x1="0" y1="0" x2="48" y2="48">
-            <stop offset="0%" style="stop-color:#2f80ed;stop-opacity:0.8" />
-            <stop offset="100%" style="stop-color:#56ccf2;stop-opacity:0.4" />
-          </linearGradient>
-        </defs>
-      </svg>
+    <div id="orb" class="orb" aria-hidden="true"></div>
+    <div id="bigLogo" class="big-logo" role="img" aria-label="ZyntraVPN">
+      <img id="bigLogoImg" src="logo.png" alt="ZyntraVPN" />
     </div>
   </div>
 
+  <!-- MAIN -->
   <main>
+    <!-- HERO -->
     <section class="hero container" id="hero">
       <div class="hero-inner">
         <div class="hero-card reveal" id="heroCard" role="region" aria-labelledby="heroTitle">
@@ -628,53 +65,58 @@ details p {
       </div>
     </section>
 
+    <!-- FEATURES -->
     <section id="features" class="container reveal" aria-labelledby="featuresHeading">
       <h2 id="featuresHeading">Почему ZyntraVPN</h2>
-      <div class="grid features-grid">
+      <div class="grid features-grid" aria-hidden="false">
         <article class="card" aria-labelledby="f1">
-          <h3 id="f1">🕶️ Анонимность</h3>
+          <h3 id="f1">🕶️ Анонимность без компромиссов</h3>
           <p class="muted">Минимум данных, никакого трекинга — мы выдаём только временные конфигурации.</p>
         </article>
         <article class="card" aria-labelledby="f2">
-          <h3 id="f2">🚀 Скорость</h3>
+          <h3 id="f2">🚀 Скорость без ограничений</h3>
           <p class="muted">Оптимизированные узлы для быстрой работы стримов, игр и работы.</p>
         </article>
         <article class="card" aria-labelledby="f3">
-          <h3 id="f3">📱 Простота</h3>
+          <h3 id="f3">📱 Простота на Android и iOS</h3>
           <p class="muted">Используй v2Ray-клиенты: v2RayTun, v2rayNG, V2Box. Инструкции — в Telegram.</p>
         </article>
       </div>
     </section>
 
+    <!-- HOW -->
     <section id="how" class="container reveal" aria-labelledby="howHeading">
       <h2 id="howHeading">Как подключиться</h2>
       <ol class="how-list">
         <li><strong>Скачай приложение</strong> — Android & iOS: v2RayTun / v2rayNG / V2Box.</li>
-        <li><strong>Получай ссылку</strong> — в нашем официальном Telegram-канале вы получите временные VLESS/VLSS ссылки.</li>
+        <li><strong>Получай ссылку</strong> — в нашем Telegram-канале вы получите временные ссылки.</li>
         <li><strong>Вставь и подключись</strong> — вставь ссылку в клиент и включи соединение.</li>
         <li><strong>Если магазин недоступен</strong> — в Telegram есть прямые ссылки на APK/IPA.</li>
       </ol>
     </section>
 
+    <!-- NEWS -->
     <section id="news" class="container reveal" aria-labelledby="newsHeading">
       <h2 id="newsHeading">Новости и поддержка</h2>
       <p class="muted">Следи за обновлениями и получай новые конфигурации в официальном Telegram-канале.</p>
-      <p style="margin-top:12px"><a class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">📢 Официальный канал — Перейти</a></p>
+      <p style="margin-top:12px"><a class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">📢 Перейти в Telegram</a></p>
     </section>
 
+    <!-- FAQ -->
     <section id="faq" class="container reveal" aria-labelledby="faqHeading">
       <h2 id="faqHeading">FAQ / Privacy</h2>
-      <details>
+      <details style="margin-top:10px">
         <summary>Храните ли вы логи?</summary>
-        <p class="muted">Мы храним только технические данные, необходимые для выдачи ссылки (uuid, expiry). Логи трафика не сохраняются.</p>
+        <p class="muted">Мы храним только технические данные (uuid, expiry). Логи трафика не сохраняются.</p>
       </details>
-      <details>
+      <details style="margin-top:8px">
         <summary>Как проходит оплата?</summary>
-        <p class="muted">Оплата через Telegram — вручную (в будущем возможна интеграция платёжного шлюза).</p>
+        <p class="muted">Оплата через Telegram вручную (в будущем возможна интеграция платёжного шлюза).</p>
       </details>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="container footer-inner">
       <div>© <span id="yearEl"></span> ZyntraVPN — <em>Невидимость — это новая сила</em></div>
@@ -685,75 +127,56 @@ details p {
     </div>
   </footer>
 
+  <!-- SCRIPTS -->
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('yearEl').innerText = new Date().getFullYear();
-  
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    setTimeout(() => el.classList.add('show'), 140 + i * 90);
-  });
-  
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) en.target.classList.add('show');
+    document.addEventListener('DOMContentLoaded', ()=> {
+      document.getElementById('yearEl').innerText = new Date().getFullYear();
+      document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 140 + i*90));
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); });
+      }, {threshold:0.14});
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     });
-  }, { threshold: 0.14 });
-  
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-});
 
-(function() {
-  const big = document.getElementById('bigLogo');
-  const orb = document.getElementById('orb');
-  const small = document.getElementById('logoSmall');
-  let hiddenBig = false;
-  
-  function update() {
-    const sc = window.scrollY || document.documentElement.scrollTop;
-    const start = 20;
-    const end = 200;
-    const t = Math.max(0, Math.min(1, (sc - start) / (end - start)));
-    
-    // Позиция: сначала в центре (0px), потом уходит влево к nav-left
-    // Для мобильных центр экрана меньше, логотип приходит в nav-left слева
-    const centerX = window.innerWidth / 2;
-    const smallLogoX = 32; // Примерная позиция small logo в nav-left
-    const moveDistance = centerX - smallLogoX;
-    const targetX = -t * moveDistance;
-    
-    // Масштаб: от 120px (или 170px на десктопе) до 40px
-    const startScale = window.innerWidth >= 768 ? 1.42 : 1;
-    const endScale = 0.33;
-    const scale = startScale - (startScale - endScale) * t;
-    
-    // Вертикальное смещение вверх
-    const translateY = -t * 50;
-    
-    big.style.transform = `translate3d(${targetX}px, ${translateY}px, 0) scale(${scale})`;
-    big.style.opacity = `${1 - 0.2 * t}`;
-    orb.style.transform = `translate3d(${targetX / 1.8}px, ${translateY / 1.8}px, 0) scale(${1 - 0.35 * t})`;
-    
-    if (t >= 0.5) {
-      small.classList.add('visible');
-      if (!hiddenBig) {
-        big.style.visibility = 'hidden';
-        big.style.pointerEvents = 'none';
-        hiddenBig = true;
+    // Logo animation
+    (function(){
+      const big = document.getElementById('bigLogo');
+      const orb = document.getElementById('orb');
+      const small = document.getElementById('logoSmall');
+      let hiddenBig = false;
+      function update(){
+        const sc = window.scrollY || document.documentElement.scrollTop;
+        const start = 5, end = 160;
+        const t = Math.max(0, Math.min(1, (sc - start) / (end - start)));
+        const scale = 1 - 0.58 * t;
+        const translateY = - (t * 36 + 6);
+        const navLeft = document.querySelector('.nav-left');
+        const navRect = navLeft ? navLeft.getBoundingClientRect() : {left: 24, width:48};
+        const center = window.innerWidth / 2;
+        const targetX = - (t * (center - (navRect.left + navRect.width/2 + 6)));
+        big.style.transform = `translate3d(${targetX}px, ${translateY}px, 0) scale(${scale})`;
+        big.style.opacity = `${1 - 0.16 * t}`;
+        orb.style.transform = `translate3d(${targetX/1.6}px, ${translateY/1.6}px, 0) scale(${0.95 - 0.16*t})`;
+        if(t >= 0.45){
+          small.classList.add('visible');
+          if(!hiddenBig){ big.style.visibility = 'hidden'; hiddenBig = true; }
+        } else {
+          small.classList.remove('visible');
+          if(hiddenBig){ big.style.visibility = 'visible'; hiddenBig = false; }
+        }
       }
-    } else {
-      small.classList.remove('visible');
-      if (hiddenBig) {
-        big.style.visibility = 'visible';
-        big.style.pointerEvents = 'auto';
-        hiddenBig = false;
-      }
-    }
-  }
-  
-  window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-  window.addEventListener('resize', () => requestAnimationFrame(update));
-  requestAnimationFrame(update);
-})();
+      window.addEventListener('scroll', ()=> requestAnimationFrame(update), {passive:true});
+      window.addEventListener('resize', ()=> requestAnimationFrame(update));
+      requestAnimationFrame(update);
+    })();
+
+    // Mobile nav toggle
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.querySelector('.navlinks');
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      burger.setAttribute('aria-expanded', navLinks.classList.contains('show'));
+    });
   </script>
 </body>
 </html>
