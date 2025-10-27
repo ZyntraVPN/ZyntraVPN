@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- HEADER (glass dock, dark only) -->
   <header class="nav glass-dock" role="banner" aria-label="Навигация">
     <div class="nav-inner container">
       <div class="nav-left">
@@ -18,7 +17,6 @@
         </div>
         <div class="brand-title">ZyntraVPN</div>
       </div>
-
       <nav class="navlinks" role="navigation" aria-label="Главное меню">
         <a href="#features">Особенности</a>
         <a href="#how">Как подключиться</a>
@@ -28,7 +26,6 @@
     </div>
   </header>
 
-  <!-- FLOATING BIG LOGO (centered-safe) -->
   <div class="big-wrap" aria-hidden="true">
     <div id="orb" class="orb" aria-hidden="true"></div>
     <div id="bigLogo" class="big-logo" role="img" aria-label="ZyntraVPN">
@@ -36,9 +33,7 @@
     </div>
   </div>
 
-  <!-- MAIN -->
   <main>
-    <!-- HERO -->
     <section class="hero container" id="hero">
       <div class="hero-inner">
         <div class="hero-card reveal" id="heroCard" role="region" aria-labelledby="heroTitle">
@@ -60,7 +55,6 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
     <section id="features" class="container reveal" aria-labelledby="featuresHeading">
       <h2 id="featuresHeading">Почему ZyntraVPN</h2>
       <div class="grid features-grid" aria-hidden="false">
@@ -79,7 +73,6 @@
       </div>
     </section>
 
-    <!-- HOW -->
     <section id="how" class="container reveal" aria-labelledby="howHeading">
       <h2 id="howHeading">Как подключиться</h2>
       <ol class="how-list">
@@ -90,14 +83,12 @@
       </ol>
     </section>
 
-    <!-- NEWS -->
     <section id="news" class="container reveal" aria-labelledby="newsHeading">
       <h2 id="newsHeading">Новости и поддержка</h2>
       <p class="muted">Следи за обновлениями и получай новые конфигурации в официальном Telegram-канале.</p>
       <p style="margin-top:12px"><a class="btn btn-neutral" href="https://t.me/ZyntraVPN" target="_blank" rel="noreferrer">📢 Официальный канал — Перейти в Telegram</a></p>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="container reveal" aria-labelledby="faqHeading">
       <h2 id="faqHeading">FAQ / Privacy</h2>
       <details style="margin-top:10px">
@@ -111,7 +102,6 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="container footer-inner">
       <div>© <span id="yearEl"></span> ZyntraVPN — <em>Невидимость — это новая сила</em></div>
@@ -122,13 +112,9 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
-    // final single-language behavior
     document.addEventListener('DOMContentLoaded', ()=> {
       document.getElementById('yearEl').innerText = new Date().getFullYear();
-
-      // reveal animations
       document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 140 + i*90));
       const obs = new IntersectionObserver(entries => {
         entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); });
@@ -136,51 +122,19 @@
       document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     });
 
-    /* Logo animation: center -> dock (fixed) — hide earlier to avoid overlap */
     (function(){
       const big = document.getElementById('bigLogo');
       const orb = document.getElementById('orb');
       const small = document.getElementById('logoSmall');
       let hiddenBig = false;
-
       function update(){
         const sc = window.scrollY || document.documentElement.scrollTop;
         const start = 5;
         const end = 160;
         const t = Math.max(0, Math.min(1, (sc - start) / (end - start)));
-        const scale = 1 - 0.58 * t;
-        const translateY = - (t * 36 + 6);
-
         const navLeft = document.querySelector('.nav-left');
         const navRect = navLeft ? navLeft.getBoundingClientRect() : {left: 24, width:48};
         const center = window.innerWidth / 2;
         const targetX = - (t * (center - (navRect.left + navRect.width/2 + 6)));
-
-        big.style.transform = `translate3d(${targetX}px, ${translateY}px, 0) scale(${scale})`;
-        big.style.opacity = `${1 - 0.16 * t}`;
-        orb.style.transform = `translate3d(${targetX/1.6}px, ${translateY/1.6}px, 0) scale(${0.95 - 0.16*t})`;
-
-        if(t >= 0.45){
-          small.classList.add('visible');
-          if(!hiddenBig){
-            big.style.visibility = 'hidden';
-            big.style.pointerEvents = 'none';
-            hiddenBig = true;
-          }
-        } else {
-          small.classList.remove('visible');
-          if(hiddenBig){
-            big.style.visibility = 'visible';
-            big.style.pointerEvents = 'auto';
-            hiddenBig = false;
-          }
-        }
-      }
-
-      window.addEventListener('scroll', ()=> requestAnimationFrame(update), {passive:true});
-      window.addEventListener('resize', ()=> requestAnimationFrame(update));
-      requestAnimationFrame(update);
-    })();
-  </script>
-</body>
-</html>
+        const scale = 1 - 0.58 * t;
+        const transla
